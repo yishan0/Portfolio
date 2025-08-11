@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Home | My Portfolio{% endblock %}
+{% block content %}
+<div id="typing-container">
+    <div id="output"></div>
+    <div id="input-line" style="display: none;">
+        <span class="prompt">&gt;&gt;&nbsp;</span>
+        <input type="text" id="terminal-input" autofocus autocomplete="off" />
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='terminal.js') }}"></script>
+{% endblock %}

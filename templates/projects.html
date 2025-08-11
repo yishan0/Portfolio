@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Projects | My Portfolio{% endblock %}
+{% block content %}
+<div id="typing-container">
+    <div id="output">
+        <pre class="terminal-line">>> Welcome to my Projects page</pre>
+        <pre class="terminal-line">>> Here are some of my current and past projects:</pre>
+        <pre class="terminal-line">>> 1. REUSICIAN: A musician community hub built using Flask, where people can list instruments and instrumental supplies they do not need anymore, in search of a new owner. </pre>
+        <pre class="terminal-line">>> 2. JAVIOLIN: A Java swing-based violin note and rhythm matching game. This game aims to help new violinists learn note positions on their violin, while providing a fun and rewarding experience.</pre>
+        <pre class="terminal-line">>> More coming soon...</pre>
+        <pre class="terminal-line">>> Type the project number to view more details.</pre>
+    </div>
+    <div id="input-line" style="display: none;">
+        <span class="prompt">&gt;&gt;&nbsp;</span>
+        <input type="text" id="terminal-input" autofocus autocomplete="off" />
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='terminal.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block title %}Art Portfolio | My Portfolio{% endblock %}
+{% block content %}
+<div class="page-container">
+    <div class="content-section">
+        <h1 class="page-title">Art Portfolio</h1>
+        <p class="page-description">A collection of my creative works and artistic expressions</p>
+        
+        <div class="art-categories">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">All</button>
+                <button class="category-tab" data-category="mixed media">Mixed Media</button>
+                <button class="category-tab" data-category="illustration">Illustrations</button>
+                <button class="category-tab" data-category="paintings">Paintings</button>
+                <button class="category-tab" data-category="other">Other</button>
+            </div>
+        </div>
+        
+        <div class="art-gallery">
+            <!-- Example of how to add real images -->
+            <div class="art-item" data-category="mixed media">
+                <img src="{{ url_for('static', filename='Images/art/digital-art-1.jpg') }}" 
+                     alt="Digital Artwork 1" 
+                     class="art-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="art-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p>Digital Artwork 1</p>
+                </div>
+            </div>
+            
+            <div class="art-item" data-category="mixed media">
+                <img src="{{ url_for('static', filename='Images/art/digital-art-2.jpg') }}" 
+                     alt="Digital Artwork 2" 
+                     class="art-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="art-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p>Digital Artwork 2</p>
+                </div>
+            </div>
+            
+            <div class="art-item" data-category="illustration">
+                <img src="{{ url_for('static', filename='Images/art/traditional-art-1.jpg') }}" 
+                     alt="Traditional Art 1" 
+                     class="art-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="art-placeholder">
+                    <i class="fas fa-paint-brush"></i>
+                    <p>Traditional Art 1</p>
+                </div>
+            </div>
+            
+            <div class="art-item" data-category="illustration">
+                <img src="{{ url_for('static', filename='Images/art/concept-art-1.jpg') }}" 
+                     alt="Concept Art 1" 
+                     class="art-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="art-placeholder">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Concept Art 1</p>
+                </div>
+            </div>
+            
+            <div class="art-item" data-category="paintings">
+                <img src="{{ url_for('static', filename='Images/art/sketch-1.jpg') }}" 
+                     alt="Sketch 1" 
+                     class="art-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="art-placeholder">
+                    <i class="fas fa-pencil-alt"></i>
+                    <p>Sketch 1</p>
+                </div>
+            </div>
+            
+            <div class="art-item" data-category="paintings">
+                <img src="{{ url_for('static', filename='Images/art/sketch-2.jpg') }}" 
+                     alt="Sketch 2" 
+                     class="art-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="art-placeholder">
+                    <i class="fas fa-pencil-alt"></i>
+                    <p>Sketch 2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Category filtering for art portfolio
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const artItems = document.querySelectorAll('.art-item');
+    
+    // Initialize placeholder display first
+    document.querySelectorAll('.art-placeholder').forEach(placeholder => {
+        placeholder.style.display = 'none';
+    });
+    
+    // Ensure all art items have proper height
+    artItems.forEach(item => {
+        item.style.minHeight = '250px';
+        item.style.display = 'flex';
+        item.style.flexDirection = 'column';
+    });
+    
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const category = this.dataset.category;
+            
+            // Update active tab
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter art items
+            artItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'flex';
+                    item.style.animation = 'fadeInUp 0.5s ease-out';
+                    item.style.minHeight = '250px';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Lightbox functionality for art images
+    document.querySelectorAll('.art-image').forEach(img => {
+        img.addEventListener('click', function() {
+            // Create lightbox
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <div class="lightbox-content">
+                    <img src="${this.src}" alt="${this.alt}">
+                    <span class="close">&times;</span>
+                </div>
+            `;
+            
+            document.body.appendChild(lightbox);
+            
+            // Close lightbox
+            lightbox.querySelector('.close').onclick = () => {
+                lightbox.remove();
+            };
+            
+            lightbox.onclick = (e) => {
+                if (e.target === lightbox) lightbox.remove();
+            };
+            
+            // Close on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    lightbox.remove();
+                }
+            });
+        });
+    });
+    
+    // Force reflow to ensure proper rendering
+    setTimeout(() => {
+        artItems.forEach(item => {
+            item.style.minHeight = '250px';
+            item.style.display = 'flex';
+            item.style.flexDirection = 'column';
+        });
+    }, 100);
+});
+
+// Ensure proper rendering when page becomes visible again
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+        const artItems = document.querySelectorAll('.art-item');
+        artItems.forEach(item => {
+            item.style.minHeight = '250px';
+            item.style.display = 'flex';
+            item.style.flexDirection = 'column';
+        });
+    }
+});
+</script>
+{% endblock %}

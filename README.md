@@ -2,7 +2,7 @@
 
 ## 📖 **Overview**
 A modern, interactive portfolio website built with Flask that showcases my projects, skills, and creative work. Features a unique terminal-style interface with floating navigation and dynamic animations designed by me.
-<img width="1454" height="680" alt="Screenshot 2025-08-12 at 10 01 27 AM" src="https://github.com/user-attachments/assets/68ba0824-4cd1-4757-94bc-52b428ebec91" />
+<img width="1453" height="680" alt="Screenshot 2025-08-12 at 10 20 10 AM" src="https://github.com/user-attachments/assets/219e64f2-db6b-4a0a-9c1a-f0487d70395e" />
 
 ## **Content Navigation**
 Includes a dynamic art portfolio and projects directory, allowing users to easily navigate through the portfolio contents.

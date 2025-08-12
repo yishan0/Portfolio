@@ -1807,6 +1807,37 @@ body {
     text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
 
+.profile-image{
+    border-radius: 8px;
+    max-height: 200px;
+    width: 150px;
+    height: 150px;
+    border: 3px solid #00ff00;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    display: block;
+    animation: fadeInUp 1s ease-out;
+    animation: glowPulse 2s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
+}
+
+.profile-info{
+    flex: 1;
+    max-width: none;
+}
+.profile-grid{
+    display: flex;
+    flex-direction: row; /* force horizontal */
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+
+}
 /* Profile Avatar Styles */
 .profile-avatar {
     width: 150px;

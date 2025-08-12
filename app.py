@@ -28,5 +28,11 @@ def get_questions():
         data = json.load(f)
     return jsonify(data)
 
+@app.route("/get_art_data")
+def get_art_data():
+    with open("static/Images/art-data.json") as f:
+        data = json.load(f)
+    return jsonify(data)
+
 if __name__ == '__main__':
     app.run(debug=True)

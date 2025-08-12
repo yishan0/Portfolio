@@ -341,7 +341,7 @@ if (!output || !inputLine || !input) {
       
       if (currentPath === '/') {
         // Home page
-        typeLine("Hello, welcome to my portfolio - Yishan Lin. Type 'help' to begin.", () => {
+        typeLine("Hello, welcome to my portfolio. I am Yishan Lin. Here, you can get to know more about me! Type 'help' to begin.", () => {
           inputLine.style.display = "flex";
           input.focus();
         });

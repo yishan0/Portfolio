@@ -4,7 +4,7 @@
 <div class="page-container">
     <div class="content-section">
         <h1 class="page-title">Art Portfolio</h1>
-        <p class="page-description">A collection of my creative works and artistic expressions</p>
+        <p class="page-description">A collection of some of my best creative works across different mediums</p>
         
         <div class="art-categories">
             <div class="category-tabs">
@@ -16,169 +16,366 @@
             </div>
         </div>
         
-        <div class="art-gallery">
-            <!-- Example of how to add real images -->
-            <div class="art-item" data-category="mixed media">
-                <img src="{{ url_for('static', filename='Images/art/digital-art-1.jpg') }}" 
-                     alt="Digital Artwork 1" 
-                     class="art-image"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="art-placeholder">
-                    <i class="fas fa-image"></i>
-                    <p>Digital Artwork 1</p>
+        <div class="art-gallery" id="artGallery">
+            <!-- Art items will be dynamically loaded here -->
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced Lightbox Modal -->
+<div id="artLightbox" class="art-lightbox">
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-container">
+        <div class="lightbox-header">
+            <h2 id="lightboxTitle" class="lightbox-title"></h2>
+            <button class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="lightbox-content">
+            <div class="lightbox-image-container">
+                <img id="lightboxImage" class="lightbox-image" src="" alt="">
+                <div class="image-overlay">
+                    <div class="zoom-indicator" id="zoomIndicator">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomInBtn" title="Zoom In">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="zoom-btn" id="resetZoomBtn" title="Reset Zoom">
+                        <i class="fas fa-undo"></i>
+                    </button>
                 </div>
             </div>
             
-            <div class="art-item" data-category="mixed media">
-                <img src="{{ url_for('static', filename='Images/art/digital-art-2.jpg') }}" 
-                     alt="Digital Artwork 2" 
-                     class="art-image"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="art-placeholder">
-                    <i class="fas fa-image"></i>
-                    <p>Digital Artwork 2</p>
+            <div class="lightbox-details">
+                <div class="detail-item">
+                    <span class="detail-label">Creation Date</span>
+                    <span id="lightboxDate" class="detail-value"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Medium</span>
+                    <span id="lightboxMedium" class="detail-value"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Dimensions</span>
+                    <span id="lightboxDimensions" class="detail-value"></span>
+                </div>
+                <div class="detail-item description-item">
+                    <span class="detail-label">Description</span>
+                    <p id="lightboxDescription" class="detail-description"></p>
                 </div>
             </div>
-            
-            <div class="art-item" data-category="illustration">
-                <img src="{{ url_for('static', filename='Images/art/traditional-art-1.jpg') }}" 
-                     alt="Traditional Art 1" 
-                     class="art-image"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="art-placeholder">
-                    <i class="fas fa-paint-brush"></i>
-                    <p>Traditional Art 1</p>
-                </div>
-            </div>
-            
-            <div class="art-item" data-category="illustration">
-                <img src="{{ url_for('static', filename='Images/art/concept-art-1.jpg') }}" 
-                     alt="Concept Art 1" 
-                     class="art-image"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="art-placeholder">
-                    <i class="fas fa-lightbulb"></i>
-                    <p>Concept Art 1</p>
-                </div>
-            </div>
-            
-            <div class="art-item" data-category="paintings">
-                <img src="{{ url_for('static', filename='Images/art/sketch-1.jpg') }}" 
-                     alt="Sketch 1" 
-                     class="art-image"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="art-placeholder">
-                    <i class="fas fa-pencil-alt"></i>
-                    <p>Sketch 1</p>
-                </div>
-            </div>
-            
-            <div class="art-item" data-category="paintings">
-                <img src="{{ url_for('static', filename='Images/art/sketch-2.jpg') }}" 
-                     alt="Sketch 2" 
-                     class="art-image"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="art-placeholder">
-                    <i class="fas fa-pencil-alt"></i>
-                    <p>Sketch 2</p>
-                </div>
-            </div>
+        </div>
+        
+        <div class="lightbox-navigation">
+            <button class="nav-btn prev-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="image-counter" id="imageCounter"></span>
+            <button class="nav-btn next-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </div>
 </div>
 
 <script>
-// Category filtering for art portfolio
+// Global variables
+let artData = [];
+let currentArtIndex = 0;
+let filteredArtData = [];
+
+// Load art data and initialize gallery
 document.addEventListener('DOMContentLoaded', function() {
+    loadArtData();
+    initializeEventListeners();
+});
+
+// Load art data from server
+async function loadArtData() {
+    try {
+        const response = await fetch('/get_art_data');
+        artData = await response.json();
+        filteredArtData = [...artData];
+        renderArtGallery();
+    } catch (error) {
+        console.error('Error loading art data:', error);
+        // Fallback to placeholder data
+        artData = getFallbackArtData();
+        filteredArtData = [...artData];
+        renderArtGallery();
+    }
+}
+
+// Fallback art data if server is unavailable
+function getFallbackArtData() {
+    return [
+        {
+            id: 1,
+            name: "Digital Dreams",
+            category: "mixed media",
+            creation_date: "2024",
+            medium: "Digital Art & Mixed Media",
+            description: "A surreal exploration of digital consciousness, blending organic forms with geometric patterns. This piece represents the intersection of human creativity and artificial intelligence.",
+            image_path: "Images/test1.png",
+            dimensions: "1920 x 1080px"
+        },
+        {
+            id: 2,
+            name: "Neon Symphony",
+            category: "mixed media",
+            creation_date: "2024",
+            medium: "Digital Painting & Vector Graphics",
+            description: "A vibrant composition inspired by cyberpunk aesthetics and classical music theory. The neon colors dance across the canvas like notes on a musical staff.",
+            image_path: "art/digital-art-2.jpg",
+            dimensions: "2048 x 1536px"
+        }
+    ];
+}
+
+// Render art gallery
+function renderArtGallery() {
+    const gallery = document.getElementById('artGallery');
+    gallery.innerHTML = '';
+    
+    filteredArtData.forEach((art, index) => {
+        const artItem = createArtItem(art, index);
+        gallery.appendChild(artItem);
+    });
+}
+
+// Create individual art item
+function createArtItem(art, index) {
+    const artItem = document.createElement('div');
+    artItem.className = 'art-item';
+    artItem.dataset.category = art.category;
+    artItem.dataset.index = index;
+    
+    artItem.innerHTML = `
+        <div class="art-image-container">
+            <img src="/static/${art.image_path}" 
+                 alt="${art.name}" 
+                 class="art-image"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="zoom-overlay">
+                <div class="zoom-icon">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            <div class="art-placeholder">
+                <i class="fas fa-image"></i>
+                <p>${art.name}</p>
+            </div>
+        </div>
+        <div class="art-info">
+            <h3 class="art-name">${art.name}</h3>
+            <p class="art-category">${art.category}</p>
+            <p class="art-date">${art.creation_date}</p>
+        </div>
+    `;
+    
+    // Add click event for lightbox
+    artItem.addEventListener('click', () => openLightbox(index));
+    
+    return artItem;
+}
+
+// Initialize event listeners
+function initializeEventListeners() {
+    // Category filtering
     const categoryTabs = document.querySelectorAll('.category-tab');
-    const artItems = document.querySelectorAll('.art-item');
-    
-    // Initialize placeholder display first
-    document.querySelectorAll('.art-placeholder').forEach(placeholder => {
-        placeholder.style.display = 'none';
-    });
-    
-    // Ensure all art items have proper height
-    artItems.forEach(item => {
-        item.style.minHeight = '250px';
-        item.style.display = 'flex';
-        item.style.flexDirection = 'column';
-    });
-    
     categoryTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             const category = this.dataset.category;
+            filterArtByCategory(category);
             
             // Update active tab
             categoryTabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
-            
-            // Filter art items
-            artItems.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'flex';
-                    item.style.animation = 'fadeInUp 0.5s ease-out';
-                    item.style.minHeight = '250px';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
         });
     });
     
-    // Lightbox functionality for art images
-    document.querySelectorAll('.art-image').forEach(img => {
-        img.addEventListener('click', function() {
-            // Create lightbox
-            const lightbox = document.createElement('div');
-            lightbox.className = 'lightbox';
-            lightbox.innerHTML = `
-                <div class="lightbox-content">
-                    <img src="${this.src}" alt="${this.alt}">
-                    <span class="close">&times;</span>
-                </div>
-            `;
-            
-            document.body.appendChild(lightbox);
-            
-            // Close lightbox
-            lightbox.querySelector('.close').onclick = () => {
-                lightbox.remove();
-            };
-            
-            lightbox.onclick = (e) => {
-                if (e.target === lightbox) lightbox.remove();
-            };
-            
-            // Close on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    lightbox.remove();
-                }
-            });
-        });
-    });
+    // Lightbox close
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.querySelector('.lightbox-overlay').addEventListener('click', closeLightbox);
     
-    // Force reflow to ensure proper rendering
-    setTimeout(() => {
-        artItems.forEach(item => {
-            item.style.minHeight = '250px';
-            item.style.display = 'flex';
-            item.style.flexDirection = 'column';
-        });
-    }, 100);
-});
+    // Navigation buttons
+    document.getElementById('prevBtn').addEventListener('click', showPreviousArt);
+    document.getElementById('nextBtn').addEventListener('click', showNextArt);
+    
+    // Zoom controls
+    document.getElementById('zoomInBtn').addEventListener('click', zoomIn);
+    document.getElementById('zoomOutBtn').addEventListener('click', zoomOut);
+    document.getElementById('resetZoomBtn').addEventListener('click', resetZoom);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', handleKeyboardNavigation);
+}
 
-// Ensure proper rendering when page becomes visible again
-document.addEventListener('visibilitychange', function() {
-    if (!document.hidden) {
-        const artItems = document.querySelectorAll('.art-item');
-        artItems.forEach(item => {
-            item.style.minHeight = '250px';
-            item.style.display = 'flex';
-            item.style.flexDirection = 'column';
-        });
+// Filter art by category
+function filterArtByCategory(category) {
+    if (category === 'all') {
+        filteredArtData = [...artData];
+    } else {
+        filteredArtData = artData.filter(art => art.category === category);
     }
-});
+    renderArtGallery();
+}
+
+// Open lightbox
+function openLightbox(index) {
+    currentArtIndex = index;
+    const art = filteredArtData[index];
+    
+    // Reset zoom when opening new image
+    currentZoomLevel = 1;
+    
+    // Update lightbox content
+    document.getElementById('lightboxTitle').textContent = art.name;
+    document.getElementById('lightboxImage').src = `/static/${art.image_path}`;
+    document.getElementById('lightboxImage').alt = art.name;
+    document.getElementById('lightboxDate').textContent = art.creation_date;
+    document.getElementById('lightboxMedium').textContent = art.medium;
+    document.getElementById('lightboxDimensions').textContent = art.dimensions;
+    document.getElementById('lightboxDescription').textContent = art.description;
+    
+    // Reset zoom state
+    applyZoom();
+    
+    // Update image counter
+    updateImageCounter();
+    
+    // Show lightbox
+    document.getElementById('artLightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Update navigation buttons
+    updateNavigationButtons();
+}
+
+// Close lightbox
+function closeLightbox() {
+    document.getElementById('artLightbox').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Show previous art piece
+function showPreviousArt() {
+    if (currentArtIndex > 0) {
+        currentArtIndex--;
+    } else {
+        currentArtIndex = filteredArtData.length - 1;
+    }
+    openLightbox(currentArtIndex);
+}
+
+// Show next art piece
+function showNextArt() {
+    if (currentArtIndex < filteredArtData.length - 1) {
+        currentArtIndex++;
+    } else {
+        currentArtIndex = 0;
+    }
+    openLightbox(currentArtIndex);
+}
+
+// Update image counter
+function updateImageCounter() {
+    const counter = document.getElementById('imageCounter');
+    counter.textContent = `${currentArtIndex + 1} / ${filteredArtData.length}`;
+}
+
+// Update navigation buttons
+function updateNavigationButtons() {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    prevBtn.style.opacity = filteredArtData.length > 1 ? '1' : '0.3';
+    nextBtn.style.opacity = filteredArtData.length > 1 ? '1' : '0.3';
+}
+
+// Zoom functionality
+let currentZoomLevel = 1;
+const zoomStep = 0.3;
+const maxZoom = 3;
+const minZoom = 0.5;
+
+function zoomIn() {
+    if (currentZoomLevel < maxZoom) {
+        currentZoomLevel += zoomStep;
+        applyZoom();
+    }
+}
+
+function zoomOut() {
+    if (currentZoomLevel > minZoom) {
+        currentZoomLevel -= zoomStep;
+        applyZoom();
+    }
+}
+
+function resetZoom() {
+    currentZoomLevel = 1;
+    applyZoom();
+}
+
+function applyZoom() {
+    const lightboxImage = document.getElementById('lightboxImage');
+    const zoomIndicator = document.getElementById('zoomIndicator');
+    
+    lightboxImage.style.transform = `scale(${currentZoomLevel})`;
+    
+    // Update zoom indicator
+    if (currentZoomLevel > 1) {
+        lightboxImage.classList.add('zoomed');
+        zoomIndicator.classList.add('zoomed');
+        zoomIndicator.innerHTML = '<i class="fas fa-search-minus"></i>';
+    } else {
+        lightboxImage.classList.remove('zoomed');
+        zoomIndicator.classList.remove('zoomed');
+        zoomIndicator.innerHTML = '<i class="fas fa-search-plus"></i>';
+    }
+    
+    // Update button states
+    document.getElementById('zoomInBtn').disabled = currentZoomLevel >= maxZoom;
+    document.getElementById('zoomOutBtn').disabled = currentZoomLevel <= minZoom;
+}
+
+// Enhanced keyboard navigation with zoom
+function handleKeyboardNavigation(e) {
+    if (!document.getElementById('artLightbox').classList.contains('active')) return;
+    
+    switch(e.key) {
+        case 'Escape':
+            closeLightbox();
+            break;
+        case 'ArrowLeft':
+            showPreviousArt();
+            break;
+        case 'ArrowRight':
+            showNextArt();
+            break;
+        case '+':
+        case '=':
+            e.preventDefault();
+            zoomIn();
+            break;
+        case '-':
+            e.preventDefault();
+            zoomOut();
+            break;
+        case '0':
+            e.preventDefault();
+            resetZoom();
+            break;
+    }
+}
 </script>
 {% endblock %}

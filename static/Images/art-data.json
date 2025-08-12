@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Unnamed",
+    "category": "mixed media",
+    "creation_date": "April 2025",
+    "medium": "Colored pencil on paper with integrated LED lights, wooden frame, and printed music",
+    "description": "A surreal exploration of the evolution of music, and my personal connection to the diverse range of classical music composers I admire.",
+    "image_path": "Images/art/unnamed.png",
+    "dimensions": "To be updated"
+  },
+  {
+    "id": 2,
+    "name": "Waves",
+    "category": "illustration",
+    "creation_date": "June 2025",
+    "medium": "Color pencil on black paper",
+    "description": "An abstract representation of the connection between the fluidity and rigidity of water waves and sound waves, harmonies and chaos clashing yet blending together.",
+    "image_path": "Images/art/Waves.PNG",
+    "dimensions": "9x11 in"
+  },
+  {
+    "id": 3,
+    "name": "Everlasting Flare",
+    "category": "illustration",
+    "creation_date": "October 2024",
+    "medium": "Colored pencil on paper, pen on toned paper",
+    "description": "This scene depicts a late-night stroll in the mountain village of Jiufen, Taiwan. A teenage boy walks along an illuminated street that was once bustling with tourists. On this empty and surreal evening, he ponders his aspirations and dreams, writing them down on a sky lantern. With a gentle lift, he releases the lantern into the dark night sky, filling the winding alleyway with a warm, enduring glow, and sending his dreams on an everlasting journey into the unknown.",
+    "image_path": "Images/art/Everlasting_Flare.jpg",
+    "dimensions": "To be updated"
+  },
+  {
+    "id": 4,
+    "name": "Out of the Blue",
+    "category": "other",
+    "creation_date": "July 2024",
+    "medium": "Photography, captured on iPhone 15 Pro",
+    "description": "On a chilly and quiet morning, I stopped by a vast lagoon on the Northern California coastline during a road trip to take a short break. I was immediately overtaken by the tranquil landscape. Stony shores surrounded a sapphire colored lagoon, while lofty redwoods roamed amongst misty mountains. Out of the blue, a lone kayaker’s paddle broke the motionless water, leaving a trail of glittering ripples. With no one else around, me and the man on the neon colored kayak felt like the only people in the world. I quickly took out my phone to memorialize this once-in-a-lifetime moment.",
+    "image_path": "Images/art/Out_of_the_Blue.png",
+    "dimensions": "2545 x 3528 px"
+  },
+  {
+    "id": 5,
+    "name": "Twilight of Civilization",
+    "category": "illustration",
+    "creation_date": "January 2025",
+    "medium": "Charcoal & chalk pastel on toned paper",
+    "description": "Waking up to my ringing phone, I just witnessed the most breathtaking sunrise of my life. Sunlight spilled over the foggy horizon, while neon billboards on skyscrapers loomed above chasms, blinking to remind me how technology could connect me to the world in one click. I quickly grabbed my phone and clicked. Dead silence. Surrounded by lifeless screens and static sounds in this crowded supercity, I sought the comforting warmth of the sunlight. Puzzled, I could not tell if it was sunrise or sunset. Was I witnessing the dawn or dusk of our civilization?",
+    "image_path": "Images/art/Twilight.jpg",
+    "dimensions": "To be updated"
+  },
+  {
+    "id": 6,
+    "name": "Reuse. Recycle. Redesign.",
+    "category": "paintings",
+    "creation_date": "September 2024",
+    "medium": "Acrylic and white colored pencil on recycled cardboard",
+    "description": "Sustainability matters. Throughout history, unsustainable practices and machines have been at the core of how our life functions. Our generation grew up with the three R principles: Reduce, Reuse, and Recycle, to protect the environment, but that is not enough because we are so used to the convenience and comfort of modern life. What if car parts were recycled into functioning bikes? Although a bit outlandish, this concept design embodies the idea of how past items can be reused, recycled, and redesigned into new and sustainable products. Maybe we can start with recycling cardboard to create stunning artworks, or even stylish buildings! It is time to make a new blueprint–or “greenprint”–to redesign our future.",
+    "image_path": "Images/art/Reuse_Recycle_Redesign.png",
+    "dimensions": "To be updated"
+  }
+]

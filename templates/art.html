@@ -151,6 +151,12 @@ function renderArtGallery() {
     });
 }
 
+// Helper function to encode image path for URLs
+function encodeImagePath(path) {
+    // Split path by slashes and encode each segment
+    return path.split('/').map(segment => encodeURIComponent(segment)).join('/');
+}
+
 // Create individual art item
 function createArtItem(art, index) {
     const artItem = document.createElement('div');
@@ -158,9 +164,11 @@ function createArtItem(art, index) {
     artItem.dataset.category = art.category;
     artItem.dataset.index = index;
     
+    const encodedPath = encodeImagePath(art.image_path);
+    
     artItem.innerHTML = `
         <div class="art-image-container">
-            <img src="/static/${art.image_path}" 
+            <img src="/static/${encodedPath}" 
                  alt="${art.name}" 
                  class="art-image"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -237,9 +245,12 @@ function openLightbox(index) {
     // Reset zoom when opening new image
     currentZoomLevel = 1;
     
+    // Encode image path for URLs with spaces
+    const encodedPath = encodeImagePath(art.image_path);
+    
     // Update lightbox content
     document.getElementById('lightboxTitle').textContent = art.name;
-    document.getElementById('lightboxImage').src = `/static/${art.image_path}`;
+    document.getElementById('lightboxImage').src = `/static/${encodedPath}`;
     document.getElementById('lightboxImage').alt = art.name;
     document.getElementById('lightboxDate').textContent = art.creation_date;
     document.getElementById('lightboxMedium').textContent = art.medium;

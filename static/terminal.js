@@ -16,22 +16,32 @@ if (!output || !inputLine || !input) {
 
     const projectDetails = {
       "1": {
-        name: "REUSICIAN",
-        description: "A musician community hub built using Flask, where people can list instruments and instrumental supplies they do not need anymore, in search of a new owner.",
-        technologies: "Flask, Python, SQLite3, HTML, CSS",
-        github: "https://github.com/yishan0/REUSICIAN"
+        name: "Javiolin",
+        description: "A Java swing-based violin note and rhythm matching game. This game aims to help new violinists learn note positions on their violin, while providing a fun and rewarding experience. This is the most complex game I have made in terms of technicality, showcasing some of my fundamental coding skills.",
+        technologies: "Java, Java Swing",
+        linkType: "github",
+        link: "https://github.com/yishan0/Javiolin"
       },
       "2": {
-        name: "Javiolin",
-        description: "A Java swing-based violin note and rhythm matching game. This game aims to help new violinists learn note positions on their violin, while providing a fun and rewarding experience.",
-        technologies: "Java",
-        github: "https://github.com/yishan0/Javiolin"
+        name: "Dreamscapes",
+        description: "Made as part of the UCI x GATI Game Science and Engineering Technology (GSET) summer program in two weeks, collaboraiting with a group of likeminded engineers and artists. This is a Unity game MVP trailer for Dreamscapes, an escape from reality into a dangerous yet dreamy and surreal world. This demonstrates my originality and aesthetically driven creative work applied to a game design context, in which I designed all visuals and developed the final trailer.",
+        technologies: "Unity, C#",
+        linkType: "youtube",
+        link: "https://www.youtube.com/watch?v=MIu8FfWXQrc"
       },
       "3": {
-        name: "Coming soon...",
-        description: "I'll be making more projects in the future...",
-        technologies: "Who knows?",
-        github: "https://github.com/yourusername/project-three"
+        name: "MyViolinRep",
+        description: "A website to rank and discuss violin pieces, helping violinists discover and evaluate repertoire. This shows my ability to build and deploy a fully working, user-facing utility that is unique and beneficial in today's world. It proves my competency in web development and a desire to build real tools.",
+        technologies: "Flask, Python, HTML, CSS, JavaScript, SQLite3",
+        linkType: "website",
+        link: "https://myviolinrep.onrender.com/"
+      },
+      "4": {
+        name: "Reusician",
+        description: "A musician community hub built using Flask, where people can list instruments and instrumental supplies they do not need anymore, in search of a new owner. This serves as proof of my agility and dedication, demonstrating rapid, functional execution under pressure and the ability to quickly prototype. (Made overnight during Hack Cupertino 2025 with a team of 4, in which I developed the frontend and some backend integration).",
+        technologies: "Flask, Python, SQLite3, HTML, CSS",
+        linkType: "github",
+        link: "https://github.com/yishan0/REUSICIAN"
       }
     };
 
@@ -58,12 +68,17 @@ if (!output || !inputLine || !input) {
 
       if (text === "clear") return "clear";
 
-      // Check if input is a project number 1, 2, or 3
-      if (["1", "2", "3"].includes(text.trim())) return text.trim();
+      // Check if input is a project number 1, 2, 3, or 4
+      if (["1", "2", "3", "4"].includes(text.trim())) return text.trim();
 
       // Check for view/exit commands when in project view
       if (currentProjectView) {
-        if (text === "view" || text.includes("view")) return "view_github";
+        if (text === "view" || text.includes("view")) {
+          const project = projectDetails[currentProjectView];
+          if (project.linkType === "youtube") return "view_youtube";
+          if (project.linkType === "website") return "view_website";
+          return "view_github";
+        }
         if (text === "exit" || text.includes("exit") || text === "back" || text.includes("back")) return "exit_details";
       }
 
@@ -87,7 +102,7 @@ if (!output || !inputLine || !input) {
             pre.textContent += char;
           }
           i++;
-          setTimeout(typeChar, 15);
+          setTimeout(typeChar, 5); // Adjust typing speed: lower = faster, higher = slower (milliseconds per character)
         } else {
           callback();
         }
@@ -160,36 +175,51 @@ if (!output || !inputLine || !input) {
       // Clear previous content
       output.innerHTML = '';
       
+      // Determine button text and icon based on link type
+      let buttonText, buttonIcon, linkMessage;
+      if (project.linkType === "youtube") {
+        buttonText = "Watch on YouTube";
+        buttonIcon = "fab fa-youtube";
+        linkMessage = "Press on the YouTube button to watch the trailer, type 'exit' to return";
+      } else if (project.linkType === "website") {
+        buttonText = "Visit Website";
+        buttonIcon = "fas fa-globe";
+        linkMessage = "Press on the Website button to visit the project, type 'exit' to return";
+      } else {
+        buttonText = "View on GitHub";
+        buttonIcon = "fab fa-github";
+        linkMessage = "Press on the GitHub button to redirect to the project repository, type 'exit' to return";
+      }
+      
       // Show project details with animations
       typeLine(`Project ${projectNum}: ${project.name}`, () => {
         typeLine(`Description: ${project.description}`, () => {
           typeLine(`Technologies: ${project.technologies}`, () => {
-            typeLine(`Commands: Press on the GitHub button to redirect to the project repository, type 'exit' to return`, () => {
-              // Create GitHub button
+            typeLine(`Commands: ${linkMessage}`, () => {
+              // Create link button (GitHub, YouTube, or Website)
               setTimeout(() => {
-                const githubButton = document.createElement("div");
-                githubButton.className = "github-button";
-                githubButton.innerHTML = `
-                  <i class="fab fa-github"></i>
-                  <span class="button-text">View on GitHub</span>
+                const linkButton = document.createElement("div");
+                linkButton.className = project.linkType === "youtube" ? "youtube-button" : 
+                                       project.linkType === "website" ? "website-button" : "github-button";
+                linkButton.innerHTML = `
+                  <i class="${buttonIcon}"></i>
+                  <span class="button-text">${buttonText}</span>
                 `;
-                githubButton.addEventListener('click', () => {
-                  //githubButton.style.opacity = '0';
-                  githubButton.style.transform = 'scale(0.8)';
+                linkButton.addEventListener('click', () => {
+                  linkButton.style.transform = 'scale(0.8)';
                   setTimeout(() => {
-                    //githubButton.remove();
-                    window.open(project.github, '_blank');
+                    window.open(project.link, '_blank');
                   }, 300);
-                  githubButton.style.transform = 'scale(1)';
+                  linkButton.style.transform = 'scale(1)';
                 });
-                output.appendChild(githubButton);
+                output.appendChild(linkButton);
                 
                 // Animate in
-                githubButton.style.opacity = '0';
-                githubButton.style.transform = 'scale(0.8)';
+                linkButton.style.opacity = '0';
+                linkButton.style.transform = 'scale(0.8)';
                 setTimeout(() => {
-                  githubButton.style.opacity = '1';
-                  githubButton.style.transform = 'scale(1)';
+                  linkButton.style.opacity = '1';
+                  linkButton.style.transform = 'scale(1)';
                 }, 100);
               }, 500);
 
@@ -239,13 +269,14 @@ if (!output || !inputLine || !input) {
     function showProjectsPage() {
       output.innerHTML = '';
       typeLine("Heres some of my projects - Select a project or type the project number:", () => {
-        createProjectButton("1", "REusician", 300);
-        createProjectButton("2", "Javiolin", 500);
-        createProjectButton("3", "Coming soon...", 700);
+        createProjectButton("1", "Javiolin", 300);
+        createProjectButton("2", "Dreamscapes", 500);
+        createProjectButton("3", "MyViolinRep", 700);
+        createProjectButton("4", "Reusician", 900);
         setTimeout(() => {
           inputLine.style.display = "flex";
           input.focus();
-        }, 900);
+        }, 1100);
       });
     }
 
@@ -281,7 +312,7 @@ if (!output || !inputLine || !input) {
           inputLine.style.display = "flex";
           input.focus();
         });
-      } else if (["1", "2", "3"].includes(cmd)) {
+      } else if (["1", "2", "3", "4"].includes(cmd)) {
         showProjectDetails(cmd);
       } else if (cmd === "view_github") {
         // Handle view command for GitHub
@@ -289,8 +320,36 @@ if (!output || !inputLine || !input) {
           const project = projectDetails[currentProjectView];
           typeLine(`Opening GitHub repository for ${project.name}...`, () => {
             setTimeout(() => {
-              window.open(project.github, '_blank');
+              window.open(project.link, '_blank');
               typeLine("GitHub opened in new tab. You can continue using the terminal.", () => {
+                inputLine.style.display = "flex";
+                input.focus();
+              });
+            }, 1000);
+          });
+        }
+      } else if (cmd === "view_youtube") {
+        // Handle view command for YouTube
+        if (currentProjectView) {
+          const project = projectDetails[currentProjectView];
+          typeLine(`Opening YouTube video for ${project.name}...`, () => {
+            setTimeout(() => {
+              window.open(project.link, '_blank');
+              typeLine("YouTube opened in new tab. You can continue using the terminal.", () => {
+                inputLine.style.display = "flex";
+                input.focus();
+              });
+            }, 1000);
+          });
+        }
+      } else if (cmd === "view_website") {
+        // Handle view command for Website
+        if (currentProjectView) {
+          const project = projectDetails[currentProjectView];
+          typeLine(`Opening website for ${project.name}...`, () => {
+            setTimeout(() => {
+              window.open(project.link, '_blank');
+              typeLine("Website opened in new tab. You can continue using the terminal.", () => {
                 inputLine.style.display = "flex";
                 input.focus();
               });

@@ -23,20 +23,27 @@ if (!output || !inputLine || !input) {
         link: "https://github.com/yishan0/Javiolin"
       },
       "2": {
+        name: "Mission: Waste Handling",
+        description: "A game developed with Unity that gamifies recycling and helps players learn what type of bottle waste to recycle.",
+        technologies: "Unity, C#, Procreate",
+        linkType: "website",
+        link: "https://play.unity.com/en/games/15d533fe-0002-481d-a6f6-2d6d56e70e8a/mission-waste-handling-v1"
+      },
+      "3": {
         name: "Dreamscapes",
         description: "Made as part of the UCI x GATI Game Science and Engineering Technology (GSET) summer program in two weeks, collaboraiting with a group of likeminded engineers and artists. This is a Unity game MVP trailer for Dreamscapes, an escape from reality into a dangerous yet dreamy and surreal world. This demonstrates my originality and aesthetically driven creative work applied to a game design context, in which I designed all visuals and developed the final trailer.",
         technologies: "Unity, C#",
         linkType: "youtube",
         link: "https://www.youtube.com/watch?v=MIu8FfWXQrc"
       },
-      "3": {
+      "4": {
         name: "MyViolinRep",
         description: "A website to rank and discuss violin pieces, helping violinists discover and evaluate repertoire. This shows my ability to build and deploy a fully working, user-facing utility that is unique and beneficial in today's world. It proves my competency in web development and a desire to build real tools.",
         technologies: "Flask, Python, HTML, CSS, JavaScript, SQLite3",
         linkType: "website",
         link: "https://myviolinrep.onrender.com/"
       },
-      "4": {
+      "5": {
         name: "Reusician",
         description: "A musician community hub built using Flask, where people can list instruments and instrumental supplies they do not need anymore, in search of a new owner. This serves as proof of my agility and dedication, demonstrating rapid, functional execution under pressure and the ability to quickly prototype. (Made overnight during Hack Cupertino 2025 with a team of 4, in which I developed the frontend and some backend integration).",
         technologies: "Flask, Python, SQLite3, HTML, CSS",
@@ -102,7 +109,7 @@ if (!output || !inputLine || !input) {
             pre.textContent += char;
           }
           i++;
-          setTimeout(typeChar, 5); // Adjust typing speed: lower = faster, higher = slower (milliseconds per character)
+          setTimeout(typeChar, 2); // Adjust typing speed: lower = faster, higher = slower (milliseconds per character)
         } else {
           callback();
         }
@@ -270,13 +277,14 @@ if (!output || !inputLine || !input) {
       output.innerHTML = '';
       typeLine("Heres some of my projects - Select a project or type the project number:", () => {
         createProjectButton("1", "Javiolin", 300);
-        createProjectButton("2", "Dreamscapes", 500);
-        createProjectButton("3", "MyViolinRep", 700);
-        createProjectButton("4", "Reusician", 900);
+        createProjectButton("2", "Mission: Waste Handling", 500);
+        createProjectButton("3", "Dreamscapes", 700);
+        createProjectButton("4", "MyViolinRep", 900);
+        createProjectButton("5", "Reusician", 1100);
         setTimeout(() => {
           inputLine.style.display = "flex";
           input.focus();
-        }, 1100);
+        }, 1300);
       });
     }
 

@@ -109,7 +109,7 @@ if (!output || !inputLine || !input) {
             pre.textContent += char;
           }
           i++;
-          setTimeout(typeChar, 2); // Adjust typing speed: lower = faster, higher = slower (milliseconds per character)
+          setTimeout(typeChar, 5); // Adjust typing speed: lower = faster, higher = slower (milliseconds per character)
         } else {
           callback();
         }

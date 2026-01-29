@@ -91,6 +91,8 @@
 let artData = [];
 let currentArtIndex = 0;
 let filteredArtData = [];
+let audioPlayer = null;
+let hasUserInteractedWithAudio = false;
 
 // Load art data and initialize gallery
 document.addEventListener('DOMContentLoaded', function() {
@@ -172,11 +174,7 @@ function createArtItem(art, index) {
                  alt="${art.name}" 
                  class="art-image"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="zoom-overlay">
-                <div class="zoom-icon">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
+            <!-- Removed the large center magnifying glass overlay to reduce distraction -->
             <div class="art-placeholder">
                 <i class="fas fa-image"></i>
                 <p>${art.name}</p>
@@ -189,8 +187,20 @@ function createArtItem(art, index) {
         </div>
     `;
     
-    // Add click event for lightbox
-    artItem.addEventListener('click', () => openLightbox(index));
+    // Add click event: open lightbox AND (on first click) start audio for this artwork
+    artItem.addEventListener('click', () => {
+        const clickedArt = filteredArtData[index];
+        // Mark that the user has interacted with audio so browsers allow playback
+        hasUserInteractedWithAudio = true;
+
+        // Open the lightbox for this piece
+        openLightbox(index);
+
+        // Immediately start this artwork's audio on the same user gesture (if it has one)
+        if (clickedArt && clickedArt.linked_song) {
+            playAudio(clickedArt.linked_song);
+        }
+    });
     
     return artItem;
 }
@@ -225,6 +235,38 @@ function initializeEventListeners() {
     
     // Keyboard navigation
     document.addEventListener('keydown', handleKeyboardNavigation);
+
+    // Play audio when the user clicks anywhere inside the lightbox container
+    // (so you don't have to precisely click on the image)
+    const lightboxContainer = document.querySelector('.lightbox-container');
+    if (lightboxContainer) {
+        lightboxContainer.addEventListener('click', function(event) {
+            // Ignore clicks on UI controls that already have their own meaning
+            if (
+                event.target.closest('#lightboxClose') ||
+                event.target.closest('.nav-btn') ||
+                event.target.closest('.zoom-btn')
+            ) {
+                return;
+            }
+
+            event.stopPropagation();
+
+            const art = filteredArtData[currentArtIndex];
+            if (art && art.linked_song) {
+                hasUserInteractedWithAudio = true;
+                playAudio(art.linked_song);
+            } else {
+                // If there is no audio for this piece, just ensure anything playing stops
+                stopAudio();
+            }
+        });
+    }
+
+    // Stop any playing audio when the user scrolls the page
+    window.addEventListener('scroll', function() {
+        stopAudio();
+    }, { passive: true });
 }
 
 // Filter art by category
@@ -241,40 +283,55 @@ function filterArtByCategory(category) {
 function openLightbox(index) {
     currentArtIndex = index;
     const art = filteredArtData[index];
-    
+
     // Reset zoom when opening new image
     currentZoomLevel = 1;
-    
+
     // Encode image path for URLs with spaces
     const encodedPath = encodeImagePath(art.image_path);
-    
+
     // Update lightbox content
+    const lightboxImage = document.getElementById('lightboxImage');
     document.getElementById('lightboxTitle').textContent = art.name;
-    document.getElementById('lightboxImage').src = `/static/${encodedPath}`;
-    document.getElementById('lightboxImage').alt = art.name;
+    lightboxImage.src = `/static/${encodedPath}`;
+    lightboxImage.alt = art.name;
+    // Store the audio path on the image element so the click handler can access it
+    lightboxImage.dataset.audioPath = art.linked_song || '';
     document.getElementById('lightboxDate').textContent = art.creation_date;
     document.getElementById('lightboxMedium').textContent = art.medium;
     document.getElementById('lightboxDimensions').textContent = art.dimensions;
     document.getElementById('lightboxDescription').textContent = art.description;
-    
+
     // Reset zoom state
     applyZoom();
-    
+
     // Update image counter
     updateImageCounter();
-    
+
     // Show lightbox
     document.getElementById('artLightbox').classList.add('active');
     document.body.style.overflow = 'hidden';
-    
+
     // Update navigation buttons
     updateNavigationButtons();
+
+    // Stop any currently playing audio
+    stopAudio();
+
+    // If the user has already interacted with audio (clicked once),
+    // automatically start the new artwork’s audio when switching pieces.
+    if (hasUserInteractedWithAudio && art.linked_song) {
+        playAudio(art.linked_song);
+    }
 }
 
 // Close lightbox
 function closeLightbox() {
     document.getElementById('artLightbox').classList.remove('active');
     document.body.style.overflow = '';
+    
+    // Stop audio
+    stopAudio();
 }
 
 // Show previous art piece
@@ -388,5 +445,30 @@ function handleKeyboardNavigation(e) {
             break;
     }
 }
+
+// Play audio
+function playAudio(audioPath) {
+    stopAudio(); // Stop any currently playing audio
+
+    if (!audioPath) {
+        console.warn('No audio linked for this artwork.');
+        return; // Do nothing if no song is linked
+    }
+
+    audioPlayer = new Audio(`/static/${audioPath}`);
+    audioPlayer.loop = true; // Enable looping
+    audioPlayer.play().catch((error) => {
+        console.error('Error playing audio:', error);
+    });
+}
+
+// Stop audio
+function stopAudio() {
+    if (audioPlayer) {
+        audioPlayer.pause();
+        audioPlayer = null;
+    }
+}
+
 </script>
 {% endblock %}

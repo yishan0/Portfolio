@@ -11,6 +11,16 @@
   },
   {
     "id": 2,
+    "name": "Prelude, Adagio, Finale", 
+    "category": "paintings",
+    "creation_date": "January 2026",
+    "medium": "Acrylic on canvas",
+    "description": "Classical music tells a story. Through my violin, I’ve discovered German composer Max Bruch, whose works are rooted in the emotional depth of German Romanticism. Inspired by classical German statues, I interpret his Violin Concerto as a three-movement tale of Before, Between, and Beyond. The prelude depicts silent struggle, reflecting internalized tension in militaristic Germany of the late 1800s, embodied by a contemplative figure. Between, the music unfolds and rises, as he confronts reality, reaching upward with sentiment like a fallen angel. In the finale, golden forms emerge, as music guides the violinist beyond struggle towards hope and monumental relief.",
+    "image_path": "Images/art/bruch.jpeg",
+    "dimensions": "18x24 in"
+  },
+  {
+    "id": 3,
     "name": "Where Strings Make Common Ground",
     "category": "paintings",
     "creation_date": "October 2025",
@@ -20,7 +30,7 @@
     "dimensions": "18x24 in"
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Prokofiev Through the Looking-Glass",
     "category": "paintings",
     "creation_date": "September 2025",
@@ -30,7 +40,7 @@
     "dimensions": "18x24 in"
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Saint Saëns' Aquarium",
     "category": "illustration",
     "creation_date": "June 2025",
@@ -40,7 +50,7 @@
     "dimensions": "9x11 in"
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Sibelius Violin Concerto",
     "category": "mixed media",
     "creation_date": "June 2025",
@@ -50,7 +60,7 @@
     "dimensions": "16x20x1.5 in"
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Everlasting Flare",
     "category": "illustration",
     "creation_date": "October 2024",
@@ -60,7 +70,7 @@
     "dimensions": "To be updated"
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Out of the Blue",
     "category": "other",
     "creation_date": "July 2024",
@@ -70,7 +80,7 @@
     "dimensions": "2545 x 3528 px"
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Twilight of Civilization",
     "category": "illustration",
     "creation_date": "January 2025",
@@ -80,7 +90,7 @@
     "dimensions": "To be updated"
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Reuse. Recycle. Redesign.",
     "category": "paintings",
     "creation_date": "September 2024",

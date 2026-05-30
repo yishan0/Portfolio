@@ -12,25 +12,25 @@
   },
   {
     "id": 2,
-    "name": "Prelude, Adagio, Finale", 
-    "category": "paintings",
-    "creation_date": "January 2026",
-    "medium": "Acrylic on canvas",
-    "description": "Classical music tells a story. Through my violin, I’ve discovered German composer Max Bruch, whose works are rooted in the emotional depth of German Romanticism. Inspired by classical German statues, I interpret his Violin Concerto as a three-movement tale of Before, Between, and Beyond. The prelude depicts silent struggle, reflecting internalized tension in militaristic Germany of the late 1800s, embodied by a contemplative figure. Between, the music unfolds and rises, as he confronts reality, reaching upward with sentiment like a fallen angel. In the finale, golden forms emerge, as music guides the violinist beyond struggle towards hope and monumental relief.",
-    "image_path": "Images/art/bruch.jpeg",
-    "dimensions": "18x24 in",
-    "linked_song": "audio/bruch.mp3"
-  },
-  {
-    "id": 3,
     "name": "Where Strings Make Common Ground",
     "category": "paintings",
-    "creation_date": "October 2025",
+    "creation_date": "October 2025, Rev. April 2026",
     "medium": "Oil, acrylic, and chalk pastel on canvas",
     "description": "This painting is a tribute to American Composer Samuel Barber's Violin Concerto. Through my own interpretation of this timeless piece, I further explored how music transcends human experiences. Through Barber's pastoral and introspective melody, I can not only feel the flowing and harmonic terraces of my own homeland of China, but also the rustic and warm tones of the American countryside.",
     "image_path": "Images/art/Barber_2526.jpeg",
     "dimensions": "18x24 in",
     "linked_song": "audio/barbernew.mp3"
+  },
+  {
+    "id": 3,
+    "name": "Prelude, Adagio, Finale", 
+    "category": "paintings",
+    "creation_date": "January 2026, Rev. April 2026",
+    "medium": "Acrylic on canvas",
+    "description": "Classical music tells a story. Through my violin, I’ve discovered German composer Max Bruch, whose works are rooted in the emotional depth of German Romanticism. Inspired by classical German statues, I interpret his Violin Concerto as a three-movement tale of Before, Between, and Beyond. The prelude depicts silent struggle, reflecting internalized tension in militaristic Germany of the late 1800s, embodied by a contemplative figure. Between, the music unfolds and rises, as he confronts reality, reaching upward with sentiment like a fallen angel. In the finale, golden forms emerge, as music guides the violinist beyond struggle towards hope and monumental relief.",
+    "image_path": "Images/art/bruch.jpeg",
+    "dimensions": "18x24 in",
+    "linked_song": "audio/bruch.mp3"
   },
   {
     "id": 4,
@@ -67,6 +67,17 @@
   },
   {
     "id": 7,
+    "name": "Vision of Bowfin",
+    "category": "illustration",
+    "creation_date": "2024, Rev. May 2026",
+    "medium": "Colored pencil and graphite on paper",
+    "description": "2023 is a hostile year for the human race, with many geopolitical conflicts and ongoing wars. This picture was my mental image of my recent visit to USS Bowfin, a World War II submarine at Pearl Harbor. In stark contrast to its colorful and lively tropical surroundings, the submarine is a dismal and monochrome piece of metal evoking the poignant human history of World War II. During the tour, I glanced through a massive door inside the passageway and saw empty shelves where lethal weapons like torpedoes could have been stored. My brain instantly erased this dull and regrettable image of the shelves, and filled in the dark void with a vibrant school of fish, beside which this Bowfin could have swum. This school of fish, each with different coats and appearances, made me think of the people from diverse countries and cultures that live in our world today. I hope that we, like all of these fish, can swim together towards a common goal to make this world a colorful, inclusive, and peaceful place that we call home.",
+    "image_path": "Images/art/vision.JPG",
+    "dimensions": "To be updated",
+    "linked_song": null
+  },
+  {
+    "id": 8,
     "name": "Everlasting Flare",
     "category": "illustration",
     "creation_date": "October 2024",
@@ -77,7 +88,7 @@
     "linked_song": null
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Out of the Blue",
     "category": "other",
     "creation_date": "July 2024",
@@ -88,7 +99,7 @@
     "linked_song": null
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Twilight of Civilization",
     "category": "illustration",
     "creation_date": "January 2025",
@@ -99,7 +110,7 @@
     "linked_song": null
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Reuse. Recycle. Redesign.",
     "category": "paintings",
     "creation_date": "September 2024",

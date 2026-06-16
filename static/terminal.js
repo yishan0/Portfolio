@@ -36,20 +36,6 @@ if (!output || !inputLine || !input) {
         linkType: "youtube",
         link: "https://www.youtube.com/watch?v=MIu8FfWXQrc"
       },
-      "4": {
-        name: "MyViolinRep",
-        description: "A website to rank and discuss violin pieces, helping violinists discover and evaluate repertoire. This shows my ability to build and deploy a fully working, user-facing utility that is unique and beneficial in today's world. It proves my competency in web development and a desire to build real tools.",
-        technologies: "Flask, Python, HTML, CSS, JavaScript, SQLite3",
-        linkType: "website",
-        link: "https://myviolinrep.onrender.com/"
-      },
-      "5": {
-        name: "Reusician",
-        description: "A musician community hub built using Flask, where people can list instruments and instrumental supplies they do not need anymore, in search of a new owner. This serves as proof of my agility and dedication, demonstrating rapid, functional execution under pressure and the ability to quickly prototype. (Made overnight during Hack Cupertino 2025 with a team of 4, in which I developed the frontend and some backend integration).",
-        technologies: "Flask, Python, SQLite3, HTML, CSS",
-        linkType: "github",
-        link: "https://github.com/yishan0/REUSICIAN"
-      }
     };
 
     let currentProjectView = null; // Track if user is viewing a project
@@ -75,8 +61,8 @@ if (!output || !inputLine || !input) {
 
       if (text === "clear") return "clear";
 
-      // Check if input is a project number 1, 2, 3, or 4
-      if (["1", "2", "3", "4"].includes(text.trim())) return text.trim();
+      // Check if input is a project number 1, 2, or 3
+      if (["1", "2", "3"].includes(text.trim())) return text.trim();
 
       // Check for view/exit commands when in project view
       if (currentProjectView) {
@@ -279,12 +265,10 @@ if (!output || !inputLine || !input) {
         createProjectButton("1", "Javiolin", 300);
         createProjectButton("2", "Mission: Waste Handling", 500);
         createProjectButton("3", "Dreamscapes", 700);
-        createProjectButton("4", "MyViolinRep", 900);
-        createProjectButton("5", "Reusician", 1100);
         setTimeout(() => {
           inputLine.style.display = "flex";
           input.focus();
-        }, 1300);
+        }, 900);
       });
     }
 
@@ -320,7 +304,7 @@ if (!output || !inputLine || !input) {
           inputLine.style.display = "flex";
           input.focus();
         });
-      } else if (["1", "2", "3", "4"].includes(cmd)) {
+      } else if (["1", "2", "3"].includes(cmd)) {
         showProjectDetails(cmd);
       } else if (cmd === "view_github") {
         // Handle view command for GitHub

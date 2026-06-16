@@ -1,0 +1,22 @@
+ {
+    "id": 13,
+    "name": "Twilight of Civilization",
+    "category": "illustration",
+    "creation_date": "January 2025",
+    "medium": "Charcoal & chalk pastel on toned paper",
+    "description": "Waking up to my ringing phone, I just witnessed the most breathtaking sunrise of my life. Sunlight spilled over the foggy horizon, while neon billboards on skyscrapers loomed above chasms, blinking to remind me how technology could connect me to the world in one click. I quickly grabbed my phone and clicked. Dead silence. Surrounded by lifeless screens and static sounds in this crowded supercity, I sought the comforting warmth of the sunlight. Puzzled, I could not tell if it was sunrise or sunset. Was I witnessing the dawn or dusk of our civilization?",
+    "image_path": "Images/art/Twilight.jpg",
+    "dimensions": "To be updated",
+    "linked_song": null
+  },
+  {
+    "id": 14,
+    "name": "Reuse. Recycle. Redesign.",
+    "category": "paintings",
+    "creation_date": "September 2024",
+    "medium": "Acrylic and white colored pencil on recycled cardboard",
+    "description": "Sustainability matters. Throughout history, unsustainable practices and machines have been at the core of how our life functions. Our generation grew up with the three R principles: Reduce, Reuse, and Recycle, to protect the environment, but that is not enough because we are so used to the convenience and comfort of modern life. What if car parts were recycled into functioning bikes? Although a bit outlandish, this concept design embodies the idea of how past items can be reused, recycled, and redesigned into new and sustainable products. Maybe we can start with recycling cardboard to create stunning artworks, or even stylish buildings! It is time to make a new blueprint–or \"greenprint\"–to redesign our future.",
+    "image_path": "Images/art/Reuse_Recycle_Redesign.png",
+    "dimensions": "To be updated",
+    "linked_song": null
+  }

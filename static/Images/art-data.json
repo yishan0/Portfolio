@@ -41,12 +41,23 @@
     "description": "To Be Updated",
     "image_path": "Images/art/rib.jpg",
     "dimensions": "26x22x3 in",
-    "linked_song": null
+    "linked_song": "audio/rib.mp3"
   },
   {
     "id": 5,
-    "name": "Prelude, Adagio, Finale", 
+    "name": "Yellow River",
     "category": "mixed media",
+    "creation_date": "June 2026",
+    "medium": "Processed paper on canvas, watercolor pencils, acrylic, paper cutouts",
+    "description": "To Be Updated",
+    "image_path": "Images/art/yellowriv.jpeg",
+    "dimensions": "19x33x2 in",
+    "linked_song": "audio/yriver.mp3"
+  },
+  {
+    "id": 6,
+    "name": "Prelude, Adagio, Finale", 
+    "category": "paintings",
     "creation_date": "January 2026, Rev. April 2026",
     "medium": "Acrylic on canvas",
     "description": "Classical music tells a story. Through my violin, I’ve discovered German composer Max Bruch, whose works are rooted in the emotional depth of German Romanticism. Inspired by classical German statues, I interpret his Violin Concerto as a three-movement tale of Before, Between, and Beyond. The prelude depicts silent struggle, reflecting internalized tension in militaristic Germany of the late 1800s, embodied by a contemplative figure. Between, the music unfolds and rises, as he confronts reality, reaching upward with sentiment like a fallen angel. In the finale, golden forms emerge, as music guides the violinist beyond struggle towards hope and monumental relief.",
@@ -55,7 +66,7 @@
     "linked_song": "audio/bruch.mp3"
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Prokofiev Through the Looking-Glass",
     "category": "paintings",
     "creation_date": "September 2025",
@@ -66,7 +77,7 @@
     "linked_song": "audio/prokofiev.mp3"
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Saint Saëns' Aquarium",
     "category": "illustration",
     "creation_date": "June 2025",
@@ -77,7 +88,7 @@
     "linked_song": "audio/saens.mp3"
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Sibelius Violin Concerto",
     "category": "mixed media",
     "creation_date": "June 2025",
@@ -88,7 +99,7 @@
     "linked_song": "audio/sibelius.mp3"
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Vision of Bowfin",
     "category": "illustration",
     "creation_date": "2024, Rev. May 2026",
@@ -99,7 +110,7 @@
     "linked_song": null
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Everlasting Flare",
     "category": "illustration",
     "creation_date": "October 2024",
@@ -110,7 +121,7 @@
     "linked_song": null
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "Out of the Blue",
     "category": "other",
     "creation_date": "July 2024",
@@ -118,28 +129,6 @@
     "description": "On a chilly and quiet morning, I stopped by a vast lagoon on the Northern California coastline during a road trip to take a short break. I was immediately overtaken by the tranquil landscape. Stony shores surrounded a sapphire colored lagoon, while lofty redwoods roamed amongst misty mountains. Out of the blue, a lone kayaker’s paddle broke the motionless water, leaving a trail of glittering ripples. With no one else around, me and the man on the neon colored kayak felt like the only people in the world. I quickly took out my phone to memorialize this once-in-a-lifetime moment.",
     "image_path": "Images/art/Out_of_the_Blue.png",
     "dimensions": "2545 x 3528 px",
-    "linked_song": null
-  },
-  {
-    "id": 12,
-    "name": "Twilight of Civilization",
-    "category": "illustration",
-    "creation_date": "January 2025",
-    "medium": "Charcoal & chalk pastel on toned paper",
-    "description": "Waking up to my ringing phone, I just witnessed the most breathtaking sunrise of my life. Sunlight spilled over the foggy horizon, while neon billboards on skyscrapers loomed above chasms, blinking to remind me how technology could connect me to the world in one click. I quickly grabbed my phone and clicked. Dead silence. Surrounded by lifeless screens and static sounds in this crowded supercity, I sought the comforting warmth of the sunlight. Puzzled, I could not tell if it was sunrise or sunset. Was I witnessing the dawn or dusk of our civilization?",
-    "image_path": "Images/art/Twilight.jpg",
-    "dimensions": "To be updated",
-    "linked_song": null
-  },
-  {
-    "id": 13,
-    "name": "Reuse. Recycle. Redesign.",
-    "category": "paintings",
-    "creation_date": "September 2024",
-    "medium": "Acrylic and white colored pencil on recycled cardboard",
-    "description": "Sustainability matters. Throughout history, unsustainable practices and machines have been at the core of how our life functions. Our generation grew up with the three R principles: Reduce, Reuse, and Recycle, to protect the environment, but that is not enough because we are so used to the convenience and comfort of modern life. What if car parts were recycled into functioning bikes? Although a bit outlandish, this concept design embodies the idea of how past items can be reused, recycled, and redesigned into new and sustainable products. Maybe we can start with recycling cardboard to create stunning artworks, or even stylish buildings! It is time to make a new blueprint–or \"greenprint\"–to redesign our future.",
-    "image_path": "Images/art/Reuse_Recycle_Redesign.png",
-    "dimensions": "To be updated",
     "linked_song": null
   }
 ]

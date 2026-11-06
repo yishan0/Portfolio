@@ -1,47 +1,25 @@
 # Portfolio
 
 ## 📖 **Overview**
-A modern, interactive portfolio website built with Flask that showcases my projects, skills, and creative work. Features a unique terminal-style interface with floating navigation and dynamic animations designed by me.
-
-<img width="1453" height="680" alt="Screenshot 2025-08-12 at 10 20 10 AM" src="https://github.com/user-attachments/assets/219e64f2-db6b-4a0a-9c1a-f0487d70395e" />
-
-## **Content Navigation**
-Includes a dynamic art portfolio and projects directory, allowing users to easily navigate through the portfolio contents.
-
-## **Art Portfolio Demo**
-*Fully interactable and responsive portfolio navigation and grouping, providing a zoomed in lightbox upon clicking on any artwork.*
-
-<img width="1452" height="685" alt="Screenshot 2025-08-12 at 10 09 17 AM" src="https://github.com/user-attachments/assets/8bb4a2d3-2779-417d-a54e-9757d14e20e4" />
-
-*Demo of zoom in/out/reset functions on art portfolio, also shows relevant information to the selected artwork that is retrieved from an appendable JSON file.*
-
-<img width="1450" height="686" alt="Screenshot 2025-08-12 at 10 07 54 AM" src="https://github.com/user-attachments/assets/c6ddc615-013e-4dd9-8be9-4262a2febe0f" />
-
-## **Projects Directory Demo**
-*Project directory.*
-
-<img width="1455" height="685" alt="Screenshot 2025-08-12 at 10 11 30 AM" src="https://github.com/user-attachments/assets/465579eb-968e-408f-a4af-a8a55a4fd17a" />
-
-*Displays relevant information upon selection and includes link for redirection to the selected project repository.*
-
-<img width="1452" height="689" alt="Screenshot 2025-08-12 at 10 11 53 AM" src="https://github.com/user-attachments/assets/ea421d5d-e823-4fdd-8c3f-3bcb2543bf9a" />
+A minimalist portfolio website showcasing my artwork, game projects, and resume. A fixed side rail links to About, Resume, Projects, Artwork (Mixed Media / Traditional Media), and Contact, and each artwork opens in a lightbox with its medium, size, and date.
 
 ## **Project Structure**
-	•	/static — CSS, JavaScript, JSON files, and images.
-	•	/templates — HTML templates.
-	•	app.py — Main Flask app file 
-	•	requirements.txt — Python dependencies.
+	•	/site — the live website (index.html, css/, js/, assets/).
+	•	/site/js/artworks.js — artwork list; add a piece here and drop its image in site/assets/images/artwork/.
+	•	app.py — Flask app that serves /site (old page URLs like /art redirect to the matching section).
+	•	requirements.txt, Procfile — Python dependencies and the gunicorn start command for hosting.
+	•	/archive/terminal-site — the previous terminal-style version of the site, kept for reference (not served).
+
+## **Running Locally**
+	pip install -r requirements.txt
+	python app.py
+
+Then open http://127.0.0.1:5000. The site is plain HTML/CSS/JS, so site/index.html also works opened directly in a browser.
 
 ## **Technologies Used**
-	•	Flask (backend)
+	•	Flask + gunicorn (serving)
 	•	HTML, CSS, JavaScript (frontend)
-	•	Font Awesome for icons
- 
-## **Compatability**
-	•	Desktop fully supported on most browsers (can run JavaScript).
-	•	Mobile mostly supported, some sizing issues, otherwise everything works fine, still simple to navigate.
 
 ## **Contact**
 
-Feel free to reach out via email for questions or suggestions: Sushibalinu@gmail.com
-
+Feel free to reach out via email for questions or suggestions: yishanlin.studio@gmail.com
